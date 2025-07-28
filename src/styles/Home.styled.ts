@@ -27,6 +27,10 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 728px) {
+    text-align: center;
+  }
 `;
 
 export const SectionTitle = styled.h2`

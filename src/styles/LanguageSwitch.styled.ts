@@ -19,6 +19,7 @@ export const Button = styled.button<{ active: boolean }>`
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 150px;
 
   &:hover {
     background-color: ${({ active, theme }) =>
@@ -30,5 +31,9 @@ export const Button = styled.button<{ active: boolean }>`
   &:focus {
     outline: none;
     box-shadow: 0 0 6px ${({ theme }) => theme.colors.primary};
+  }
+
+  @media (max-width: 728px) {
+    width: 100%;
   }
 `;
