@@ -1,0 +1,92 @@
+{
+  "title": "Pedro Milan",
+  "subtitle": "Desenvolvedor Front-End | React | Next.js | TypeScript",
+  "toggleLight": "☀️ Modo Claro",
+  "toggleDark": "🌙 Modo Escuro",
+  "about": "Sobre Mim",
+  "aboutParagraph1": "Sou um Desenvolvedor Front-End apaixonado por criar interfaces web modernas, acessíveis e de alta performance. Tenho experiência sólida com React, Next.js e TypeScript, além de forte conhecimento em design responsivo, usabilidade e SEO.",
+  "aboutParagraph2": "Adoro transformar ideias em código limpo e reutilizável, buscando sempre a melhor experiência para o usuário. Também tenho interesse em backend com Node.js e NestJS, além de praticar boas práticas com testes, versionamento e integração contínua.",
+  "aboutParagraph3": "Estou sempre aprendendo novas tecnologias e metodologias para entregar soluções eficientes e escaláveis. Meu objetivo é contribuir com times que valorizam inovação, colaboração e qualidade de software.",
+  "projects": "Projetos",
+  "project1Title": "Clínica Odontológica Digital",
+  "project1Desc": "Sistema completo para gestão de clínicas, com troca de dentistas em tempo real e digitalização de fichas físicas.",
+  "project2Title": "Backoffice Administrativo",
+  "project2Desc": "Plataforma de gerenciamento com dashboards, filtros e CRUDs otimizados para performance.",
+  "project3Title": "DocSave API (Projeto Pessoal)",
+  "project3Desc": "Api com autenticação e gerenciamento de documentos para o dia a dia.",
+  "project4Title": "Weather Widget (Projeto Pessoal)",
+  "project4Desc": "Micro frontend em Vue que verifica o clima por localização, tendo a opção de trocar a mesma.",
+  "repository": "Repositório Github",
+  "contact": "Contato",
+  "footer": "Todos os direitos reservados.",
+
+  "skills": {
+    "sectionLabel": "Seção de habilidades técnicas",
+    "tabListLabel": "Categorias de habilidades",
+    "tabs": {
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Ferramentas": "Ferramentas"
+    },
+    "Frontend": {
+      "HTML5": {
+        "desc": "Marcações semânticas e acessibilidade"
+      },
+      "CSS3": {
+        "desc": "Flexbox, Grid, responsividade e animações"
+      },
+      "JavaScript": {
+        "desc": "ES6+, DOM, event loop, closures"
+      },
+      "TypeScript": {
+        "desc": "Tipagem estática e segurança"
+      },
+      "React.js": {
+        "desc": "Hooks, Context API, componentização"
+      },
+      "Next.js": {
+        "desc": "SSR, SSG, API Routes, SEO"
+      },
+      "Styled Components": {
+        "desc": "CSS-in-JS, theming, dark mode"
+      },
+      "Material UI": {
+        "desc": "Componentes prontos e customizáveis"
+      },
+      "Tailwind CSS": {
+        "desc": "Utilitário CSS para designs rápidos"
+      }
+    },
+    "Backend": {
+      "Node.js": {
+        "desc": "JavaScript no backend, servidor rápido"
+      },
+      "NestJS": {
+        "desc": "Framework progressivo para Node.js"
+      },
+      "Prisma": {
+        "desc": "ORM para banco de dados"
+      },
+      "Swagger": {
+        "desc": "Documentação de APIs"
+      },
+      "Docker": {
+        "desc": "Containerização de aplicações"
+      }
+    },
+    "Ferramentas": {
+      "Git & GitHub": {
+        "desc": "Versionamento e colaboração"
+      },
+      "Axios": {
+        "desc": "Cliente HTTP para requisições"
+      },
+      "Yarn": {
+        "desc": "Gerenciador de pacotes"
+      },
+      "Jest": {
+        "desc": "Testes unitários e integração"
+      }
+    }
+  }
+}

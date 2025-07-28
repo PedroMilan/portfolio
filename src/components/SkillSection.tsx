@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -27,114 +28,45 @@ import * as S from "@/styles/SkillSection.styled";
 const tabs = ["Frontend", "Backend", "Ferramentas"] as const;
 type Tab = (typeof tabs)[number];
 
-const skillsData: Record<
-  Tab,
-  Array<{ name: string; icon: React.JSX.Element; desc: string }>
-> = {
-  Frontend: [
-    {
-      name: "HTML5",
-      icon: <FaHtml5 />,
-      desc: "Marcações semânticas e acessibilidade",
-    },
-    {
-      name: "CSS3",
-      icon: <FaCss3Alt />,
-      desc: "Flexbox, Grid, responsividade e animações",
-    },
-    {
-      name: "JavaScript",
-      icon: <FaJsSquare />,
-      desc: "ES6+, DOM, event loop, closures",
-    },
-    {
-      name: "TypeScript",
-      icon: <SiTypescript />,
-      desc: "Tipagem estática e segurança",
-    },
-    {
-      name: "React.js",
-      icon: <FaReact />,
-      desc: "Hooks, Context API, componentização",
-    },
-    {
-      name: "Next.js",
-      icon: <SiNextdotjs />,
-      desc: "SSR, SSG, API Routes, SEO",
-    },
-    {
-      name: "Styled Components",
-      icon: <SiStyledcomponents />,
-      desc: "CSS-in-JS, theming, dark mode",
-    },
-    {
-      name: "Material UI",
-      icon: <SiMui />,
-      desc: "Componentes prontos e customizáveis",
-    },
-    {
-      name: "Tailwind CSS",
-      icon: <SiTailwindcss />,
-      desc: "Utilitário CSS para designs rápidos",
-    },
-  ],
-  Backend: [
-    {
-      name: "Node.js",
-      icon: <FaNodeJs />,
-      desc: "JavaScript no backend, servidor rápido",
-    },
-    {
-      name: "NestJS",
-      icon: <SiNestjs />,
-      desc: "Framework progressivo para Node.js",
-    },
-    {
-      name: "Prisma",
-      icon: <SiPrisma />,
-      desc: "ORM para banco de dados",
-    },
-    {
-      name: "Swagger",
-      icon: <SiSwagger />,
-      desc: "Documentação de APIs",
-    },
-    {
-      name: "Docker",
-      icon: <FaDocker />,
-      desc: "Containerização de aplicações",
-    },
-  ],
-  Ferramentas: [
-    {
-      name: "Git & GitHub",
-      icon: <FaGithub />,
-      desc: "Versionamento e colaboração",
-    },
-    {
-      name: "Axios",
-      icon: <SiAxios />,
-      desc: "Cliente HTTP para requisições",
-    },
-    {
-      name: "Yarn",
-      icon: <SiYarn />,
-      desc: "Gerenciador de pacotes",
-    },
-    {
-      name: "Jest",
-      icon: <SiJest />,
-      desc: "Testes unitários e integração",
-    },
-  ],
+const iconMap: Record<string, React.JSX.Element> = {
+  HTML5: <FaHtml5 />,
+  CSS3: <FaCss3Alt />,
+  JavaScript: <FaJsSquare />,
+  TypeScript: <SiTypescript />,
+  "React.js": <FaReact />,
+  "Next.js": <SiNextdotjs />,
+  "Styled Components": <SiStyledcomponents />,
+  "Material UI": <SiMui />,
+  "Tailwind CSS": <SiTailwindcss />,
+  "Node.js": <FaNodeJs />,
+  NestJS: <SiNestjs />,
+  Prisma: <SiPrisma />,
+  Swagger: <SiSwagger />,
+  Docker: <FaDocker />,
+  "Git & GitHub": <FaGithub />,
+  Axios: <SiAxios />,
+  Yarn: <SiYarn />,
+  Jest: <SiJest />,
 };
 
 export const SkillsSection = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = React.useState<Tab>("Frontend");
 
+  const tabLabelMap: Record<Tab, string> = {
+    Frontend: t("skills.tabs.Frontend"),
+    Backend: t("skills.tabs.Backend"),
+    Ferramentas: t("skills.tabs.Ferramentas"),
+  };
+
+  const skills = t(`skills.${activeTab}`, { returnObjects: true }) as Record<
+    string,
+    { desc: string }
+  >;
+
   return (
-    <S.Section aria-label="Seção de habilidades técnicas">
-      <S.Tabs role="tablist" aria-label="Categorias de habilidades">
+    <S.Section aria-label={t("skills.sectionLabel")}>
+      <S.Tabs role="tablist" aria-label={t("skills.tabListLabel")}>
         {tabs.map((tab) => (
           <S.TabButton
             key={tab}
@@ -146,7 +78,7 @@ export const SkillsSection = () => {
             id={`tab-${tab}`}
             tabIndex={tab === activeTab ? 0 : -1}
           >
-            {tab}
+            {tabLabelMap[tab]}
           </S.TabButton>
         ))}
       </S.Tabs>
@@ -156,9 +88,9 @@ export const SkillsSection = () => {
         id={`panel-${activeTab}`}
         aria-labelledby={`tab-${activeTab}`}
       >
-        {skillsData[activeTab].map(({ name, icon, desc }) => (
+        {Object.entries(skills).map(([name, { desc }]) => (
           <S.SkillCard key={name} tabIndex={0} aria-label={`${name}: ${desc}`}>
-            <S.SkillIcon>{icon}</S.SkillIcon>
+            <S.SkillIcon>{iconMap[name]}</S.SkillIcon>
             <S.SkillName>{name}</S.SkillName>
             <S.Tooltip>{desc}</S.Tooltip>
           </S.SkillCard>

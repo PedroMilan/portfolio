@@ -1,0 +1,92 @@
+{
+  "title": "Pedro Milan",
+  "subtitle": "Front-End Developer | React | Next.js | TypeScript",
+  "toggleLight": "☀️ Light Mode",
+  "toggleDark": "🌙 Dark Mode",
+  "about": "About Me",
+  "aboutParagraph1": "I’m a Front-End Developer passionate about building modern, accessible, and high-performance web interfaces. I have solid experience with React, Next.js, and TypeScript, along with strong knowledge in responsive design, usability, and SEO.",
+  "aboutParagraph2": "I love turning ideas into clean, reusable code, always aiming to deliver the best user experience. I'm also interested in backend with Node.js and NestJS, and I follow best practices with testing, version control, and continuous integration.",
+  "aboutParagraph3": "I'm always learning new technologies and methodologies to deliver efficient and scalable solutions. My goal is to contribute to teams that value innovation, collaboration, and software quality.",
+  "projects": "Projects",
+  "project1Title": "Digital Dental Clinic",
+  "project1Desc": "Complete management system for dental clinics, with real-time dentist switching and digitalization of physical records.",
+  "project2Title": "Administrative Backoffice",
+  "project2Desc": "Management platform with dashboards, filters, and optimized CRUDs for performance.",
+  "project3Title": "DocSave API (Personal Project)",
+  "project3Desc": "API with authentication and document management for daily use.",
+  "project4Title": "Weather Widget (Personal Project)",
+  "project4Desc": "Micro frontend in Vue that checks the weather by location, with the option to change it.",
+  "repository": "GitHub Repository",
+  "contact": "Contact",
+  "footer": "All rights reserved.",
+
+  "skills": {
+    "sectionLabel": "Technical skills section",
+    "tabListLabel": "Skill categories",
+    "tabs": {
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Ferramentas": "Tools"
+    },
+    "Frontend": {
+      "HTML5": {
+        "desc": "Semantic markup and accessibility"
+      },
+      "CSS3": {
+        "desc": "Flexbox, Grid, responsiveness and animations"
+      },
+      "JavaScript": {
+        "desc": "ES6+, DOM, event loop, closures"
+      },
+      "TypeScript": {
+        "desc": "Static typing and safety"
+      },
+      "React.js": {
+        "desc": "Hooks, Context API, componentization"
+      },
+      "Next.js": {
+        "desc": "SSR, SSG, API Routes, SEO"
+      },
+      "Styled Components": {
+        "desc": "CSS-in-JS, theming, dark mode"
+      },
+      "Material UI": {
+        "desc": "Prebuilt and customizable components"
+      },
+      "Tailwind CSS": {
+        "desc": "Utility-first CSS for fast design"
+      }
+    },
+    "Backend": {
+      "Node.js": {
+        "desc": "JavaScript on the backend, fast server"
+      },
+      "NestJS": {
+        "desc": "Progressive framework for Node.js"
+      },
+      "Prisma": {
+        "desc": "ORM for databases"
+      },
+      "Swagger": {
+        "desc": "API documentation"
+      },
+      "Docker": {
+        "desc": "Application containerization"
+      }
+    },
+    "Ferramentas": {
+      "Git & GitHub": {
+        "desc": "Version control and collaboration"
+      },
+      "Axios": {
+        "desc": "HTTP client for requests"
+      },
+      "Yarn": {
+        "desc": "Package manager"
+      },
+      "Jest": {
+        "desc": "Unit and integration testing"
+      }
+    }
+  }
+}

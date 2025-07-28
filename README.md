@@ -11,6 +11,7 @@ Bem-vindo ao meu portfólio pessoal desenvolvido com Next.js, TypeScript e style
 - **Styled Components**: CSS-in-JS para estilos dinâmicos e tema escuro
 - **React Icons**: Ícones vetoriais para interface
 - **React Hooks**: Gerenciamento de estado moderno e eficiente
+- **I18next**: Implementação de mais línguas
 
 ---
 

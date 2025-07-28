@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../styles/global";
 import { lightTheme, darkTheme } from "../styles/theme";
+import "@/i18n";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setIsDarkMode] = React.useState(false);

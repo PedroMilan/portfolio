@@ -77,18 +77,6 @@ export const Tooltip = styled.span`
   transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
   z-index: 10;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -95px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: ${({ theme }) => theme.colors.primary} transparent transparent
-      transparent;
-  }
 `;
 
 export const SkillIcon = styled.div`
