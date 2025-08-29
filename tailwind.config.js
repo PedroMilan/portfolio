@@ -1,0 +1,51 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: false, // não usamos mais light/dark, dark será o padrão
+  theme: {
+    extend: {
+      colors: {
+        // Dark mode como padrão
+        background: "#0a0a0a",
+        foreground: "#ffd700",
+        card: "#1a1a1a",
+        "card-foreground": "#ffd700",
+        popover: "#1a1a1a",
+        "popover-foreground": "#ffd700",
+        primary: "#ffd700",
+        "primary-foreground": "#000000",
+        secondary: "#333333",
+        "secondary-foreground": "#ffd700",
+        muted: "#262626",
+        "muted-foreground": "#a3a3a3",
+        accent: "#ffeb3b",
+        "accent-foreground": "#000000",
+        destructive: "#dc2626",
+        "destructive-foreground": "#ffffff",
+        border: "#333333",
+        input: "#262626",
+        "input-background": "#262626",
+        "switch-background": "#333333",
+        ring: "#ffd700",
+        chart1: "#ffd700",
+        chart2: "#ffeb3b",
+        chart3: "#fff176",
+        chart4: "#666666",
+        chart5: "#999999",
+        sidebar: "#1a1a1a",
+        "sidebar-foreground": "#ffd700",
+        "sidebar-primary": "#ffd700",
+        "sidebar-primary-foreground": "#000000",
+        "sidebar-accent": "#333333",
+        "sidebar-accent-foreground": "#ffd700",
+        "sidebar-border": "#333333",
+        "sidebar-ring": "#ffd700",
+      },
+    },
+  },
+  plugins: [],
+};

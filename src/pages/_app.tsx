@@ -1,33 +1,43 @@
 import React from "react";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Skills } from "@/components/Skills";
+import { Projects } from "@/components/Projects";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
-import type { AppProps } from "next/app";
-import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "../styles/global";
-import { lightTheme, darkTheme } from "../styles/theme";
-import "@/i18n";
+import "@/styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
-
+export default function App() {
+  // Aplica o tema imediatamente quando o componente monta
   React.useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme === "dark") {
-      setIsDarkMode(true);
+    const savedTheme = localStorage.getItem("theme");
+    const theme = savedTheme || "dark";
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
     }
   }, []);
 
-  React.useEffect(() => {
-    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-  }, [isDarkMode]);
-
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <GlobalStyle />
-      <Component
-        {...pageProps}
-        toggleTheme={() => setIsDarkMode(!isDarkMode)}
-        isDarkMode={isDarkMode}
-      />
+    <ThemeProvider>
+      <div className="min-h-screen bg-background transition-colors duration-300">
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 }
