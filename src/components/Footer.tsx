@@ -32,13 +32,34 @@ export function Footer() {
                 oportunidades de aprendizado.
               </p>
               <div className="flex items-center space-x-4">
-                <Button variant="ghost" size="sm">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() =>
+                    window.open("https://github.com/PedroMilan", "_blank")
+                  }
+                >
                   <Github className="w-5 h-5" />
                 </Button>
-                <Button variant="ghost" size="sm">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/pedro-henrique-milan-5a9551245/",
+                      "_blank"
+                    )
+                  }
+                >
                   <Linkedin className="w-5 h-5" />
                 </Button>
-                <Button variant="ghost" size="sm">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() =>
+                    (window.location.href = "mailto:pedro.milan9@gmail.com")
+                  }
+                >
                   <Mail className="w-5 h-5" />
                 </Button>
               </div>

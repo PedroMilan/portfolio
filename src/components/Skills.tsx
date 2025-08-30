@@ -7,20 +7,21 @@ export function Skills() {
     {
       title: "Frontend",
       skills: [
-        { name: "React/Next.js", level: 90 },
-        { name: "TypeScript", level: 85 },
+        { name: "React/Next.js", level: 95 },
+        { name: "TypeScript", level: 90 },
         { name: "Tailwind CSS", level: 90 },
-        { name: "Vue.js", level: 75 },
-      ]
+        { name: "Material UI & Styled Components", level: 85 },
+      ],
     },
     {
       title: "Backend",
       skills: [
         { name: "Node.js", level: 88 },
-        { name: "Python", level: 82 },
-        { name: "Java", level: 78 },
-        { name: "APIs REST", level: 92 },
-      ]
+        { name: "NestJS", level: 82 },
+        { name: "Python", level: 78 },
+        { name: "APIs REST & GraphQL", level: 92 },
+        { name: "Prisma & ORM", level: 80 },
+      ],
     },
     {
       title: "Banco de Dados",
@@ -29,7 +30,7 @@ export function Skills() {
         { name: "MongoDB", level: 80 },
         { name: "Redis", level: 75 },
         { name: "MySQL", level: 82 },
-      ]
+      ],
     },
     {
       title: "DevOps & Ferramentas",
@@ -38,15 +39,42 @@ export function Skills() {
         { name: "AWS", level: 75 },
         { name: "Git", level: 95 },
         { name: "CI/CD", level: 78 },
-      ]
-    }
+        { name: "Linux & Nginx", level: 70 },
+      ],
+    },
   ];
 
   const technologies = [
-    "JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Node.js",
-    "Python", "Java", "PostgreSQL", "MongoDB", "Docker", "AWS", "Git",
-    "Tailwind CSS", "Express.js", "GraphQL", "REST APIs", "Redux",
-    "Jest", "Cypress", "Linux", "Nginx", "Redis", "Prisma"
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "NestJS",
+    "Python",
+    "Java",
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "MySQL",
+    "Docker",
+    "AWS",
+    "Git",
+    "Tailwind CSS",
+    "Material UI",
+    "Styled Components",
+    "React Query",
+    "Express.js",
+    "GraphQL",
+    "REST APIs",
+    "Redux",
+    "Jest",
+    "Cypress",
+    "Linux",
+    "Nginx",
+    "Prisma",
+    "React Native",
+    "Flutter",
   ];
 
   return (
@@ -61,8 +89,9 @@ export function Skills() {
               Tecnologias e Expertise
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Domínio em tecnologias modernas e metodologias que garantem 
-              a entrega de soluções robustas e escaláveis.
+              Domínio em tecnologias modernas, metodologias ágeis e boas
+              práticas que garantem a entrega de soluções robustas, escaláveis e
+              com excelente experiência para o usuário.
             </p>
           </div>
 
@@ -76,8 +105,12 @@ export function Skills() {
                   {category.skills.map((skill, skillIndex) => (
                     <div key={skillIndex} className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">{skill.name}</span>
-                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                        <span className="text-sm font-medium">
+                          {skill.name}
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {skill.level}%
+                        </span>
                       </div>
                       <Progress value={skill.level} className="h-2" />
                     </div>
@@ -89,7 +122,9 @@ export function Skills() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-center">Tecnologias que Trabalho</CardTitle>
+              <CardTitle className="text-center">
+                Tecnologias que Trabalho
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-3 justify-center">

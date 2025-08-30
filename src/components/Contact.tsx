@@ -9,44 +9,46 @@ import { useState } from "react";
 
 export function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aqui você pode implementar a lógica de envio do formulário
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      value: "pedrao.milan@email.com",
-      link: "mailto:pedrao.milan@email.com"
+      value: "pedro.milan9@gmail.com",
+      link: "mailto:pedro.milan9@gmail.com",
     },
     {
       icon: Phone,
       title: "Telefone",
-      value: "+55 (11) 99999-9999",
-      link: "tel:+5511999999999"
+      value: "+55 (11) 96177-6373",
+      link: "tel:+5511961776373",
     },
     {
       icon: MapPin,
       title: "Localização",
       value: "São Paulo, SP - Brasil",
-      link: "#"
-    }
+      link: "#",
+    },
   ];
 
   return (
@@ -61,24 +63,28 @@ export function Contact() {
               Vamos Trabalhar Juntos
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Tem um projeto em mente? Estou sempre aberto a discutir novas 
+              Tem um projeto em mente? Estou sempre aberto a discutir novas
               oportunidades e desafios interessantes.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-1 gap-12">
             <div className="space-y-8">
               <div>
                 <h3 className="text-xl font-semibold mb-4">Entre em Contato</h3>
                 <p className="text-muted-foreground mb-6">
-                  Estou disponível para projetos freelance, oportunidades de trabalho 
-                  ou apenas para trocar ideias sobre tecnologia e desenvolvimento.
+                  Estou disponível para projetos freelance, oportunidades de
+                  trabalho ou apenas para trocar ideias sobre tecnologia e
+                  desenvolvimento.
                 </p>
               </div>
 
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
-                  <Card key={index} className="transition-colors hover:bg-accent/50">
+                  <Card
+                    key={index}
+                    className="transition-colors hover:bg-accent/50"
+                  >
                     <CardContent className="p-4">
                       <div className="flex items-center space-x-4">
                         <div className="p-2 bg-primary/10 rounded-lg">
@@ -86,7 +92,7 @@ export function Contact() {
                         </div>
                         <div>
                           <p className="font-medium">{info.title}</p>
-                          <a 
+                          <a
                             href={info.link}
                             className="text-muted-foreground hover:text-primary transition-colors"
                           >
@@ -102,12 +108,14 @@ export function Contact() {
               <div>
                 <h4 className="font-semibold mb-2">Horário de Trabalho</h4>
                 <p className="text-muted-foreground">
-                  Segunda a Sexta: 9h às 18h (GMT-3)<br />
+                  Segunda a Sexta: 9h às 18h (GMT-3)
+                  <br />
                   Finais de semana: Apenas projetos urgentes
                 </p>
               </div>
             </div>
 
+            {/* 
             <Card>
               <CardHeader>
                 <CardTitle>Envie uma Mensagem</CardTitle>
@@ -169,6 +177,7 @@ export function Contact() {
                 </form>
               </CardContent>
             </Card>
+            */}
           </div>
         </div>
       </div>
