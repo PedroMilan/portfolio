@@ -1,7 +1,55 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Progress } from "./ui/progress";
 
+// Componente para animar cada skill
+interface SkillItemProps {
+  name: string;
+  level: number;
+  delay?: number;
+}
+
+function SkillItem({ name, level, delay = 0 }: SkillItemProps) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const duration = 3.5; // segundos
+    const increment = level / (duration * 60); // 60fps
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        start += increment;
+        if (start >= level) {
+          start = level;
+          clearInterval(interval);
+        }
+        setValue(Math.floor(start));
+      }, 1000 / 60);
+    }, delay * 1000); // aplica delay
+
+    return () => clearTimeout(timeout);
+  }, [level, delay]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
+      viewport={{ once: true }}
+      className="space-y-2"
+    >
+      <div className="flex justify-between items-center">
+        <span className="text-sm font-medium">{name}</span>
+        <span className="text-sm text-muted-foreground">{value}%</span>
+      </div>
+      <Progress value={value} className="h-2" />
+    </motion.div>
+  );
+}
 export function Skills() {
   const skillCategories = [
     {
@@ -95,6 +143,7 @@ export function Skills() {
             </p>
           </div>
 
+          {/* Skills */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {skillCategories.map((category, index) => (
               <Card key={index}>
@@ -103,23 +152,19 @@ export function Skills() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">
-                          {skill.name}
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <Progress value={skill.level} className="h-2" />
-                    </div>
+                    <SkillItem
+                      key={skillIndex}
+                      name={skill.name}
+                      level={skill.level}
+                      delay={skillIndex * 0.1}
+                    />
                   ))}
                 </CardContent>
               </Card>
             ))}
           </div>
 
+          {/* Tecnologias extras */}
           <Card>
             <CardHeader>
               <CardTitle className="text-center">
@@ -129,9 +174,17 @@ export function Skills() {
             <CardContent>
               <div className="flex flex-wrap gap-3 justify-center">
                 {technologies.map((tech, index) => (
-                  <Badge key={index} variant="secondary" className="px-3 py-1">
-                    {tech}
-                  </Badge>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.02 }}
+                    viewport={{ once: true }}
+                  >
+                    <Badge variant="secondary" className="px-3 py-1">
+                      {tech}
+                    </Badge>
+                  </motion.div>
                 ))}
               </div>
             </CardContent>
