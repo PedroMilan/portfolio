@@ -15,22 +15,33 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center pt-16 relative overflow-hidden"
+      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
     >
-      {/* Background gradient sutil */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/80" />
+      {/* Fundo com imagem de tecnologia */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1920&q=80')",
+        }}
+      />
+      {/* Overlay gradiente para legibilidade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background/95" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Texto */}
           <motion.div
-            className="space-y-8"
+            className="space-y-8 text-center lg:text-left"
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="space-y-4">
-              <Badge variant="secondary" className="w-fit animate-pulse">
+              <Badge
+                variant="secondary"
+                className="w-fit animate-pulse mx-auto lg:mx-0"
+              >
                 Desenvolvedor de Sistemas
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
@@ -44,7 +55,7 @@ export function Hero() {
                   Pedro Milan
                 </motion.span>
               </h1>
-              <p className="text-lg text-muted-foreground max-w-lg">
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0">
                 Desenvolvedor de sistemas apaixonado por criar soluções digitais
                 inovadoras e eficientes. Especializado em desenvolvimento web
                 moderno e arquitetura de software robusta.
@@ -53,7 +64,7 @@ export function Hero() {
 
             {/* Botões principais */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
@@ -78,7 +89,7 @@ export function Hero() {
 
             {/* Social + CV */}
             <motion.div
-              className="flex items-center space-x-6"
+              className="flex items-center justify-center lg:justify-start space-x-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
@@ -119,14 +130,14 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Imagem + Efeitos */}
+          {/* Imagem do perfil */}
           <motion.div
-            className="relative"
+            className="relative flex justify-center lg:justify-end"
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {/* Círculos decorativos */}
+            {/* Efeitos decorativos */}
             <motion.div
               className="absolute -top-8 -right-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl"
               animate={{ scale: [1, 1.2, 1] }}
@@ -138,7 +149,7 @@ export function Hero() {
               transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
             />
 
-            {/* Foto com borda animada */}
+            {/* Foto com moldura */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 200 }}
@@ -147,7 +158,7 @@ export function Hero() {
               <ImageWithFallback
                 src="/profile.jpg"
                 alt="Foto de Pedro Milan"
-                className="rounded-2xl shadow-2xl w-60 h-60 object-cover border-2 border-primary/30"
+                className="rounded-2xl shadow-2xl w-64 h-64 object-cover border-2 border-primary/30"
               />
             </motion.div>
           </motion.div>

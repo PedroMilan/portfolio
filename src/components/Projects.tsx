@@ -60,6 +60,7 @@ export function Projects() {
     },
     {
       title: "Sistema de Ortodontia",
+      image: "/images/odont.jpg",
       description:
         "Sistema especializado para clínicas odontológicas, com módulo de login seguro e fluxo completo de atendimento ao paciente durante toda a consulta.",
       technologies: ["React", "TypeScript", "Material UI", "React Hook Form"],
@@ -67,6 +68,7 @@ export function Projects() {
     },
     {
       title: "Sistema de Geração de Documentos",
+      image: "/images/document.jpg",
       description:
         "Aplicação web voltada para criação, edição e gerenciamento de documentos, garantindo eficiência no fluxo administrativo e segurança dos dados.",
       technologies: ["React", "TypeScript", "Python", "Styled-Components"],

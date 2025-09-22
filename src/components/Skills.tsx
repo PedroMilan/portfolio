@@ -1,128 +1,90 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Progress } from "./ui/progress";
 
-// Componente para animar cada skill
-interface SkillItemProps {
+// Ícones das tecnologias
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNestjs,
+  SiPython,
+  SiPostgresql,
+  SiMongodb,
+  SiRedis,
+  SiMysql,
+  SiDocker,
+  SiGit,
+  SiTailwindcss,
+  SiStyledcomponents,
+  SiGraphql,
+  SiExpress,
+  SiRedux,
+  SiJest,
+  SiCypress,
+  SiLinux,
+  SiNginx,
+  SiPrisma,
+  SiReactquery,
+  SiFlutter,
+  SiAwsamplify,
+  SiMui,
+  SiDart,
+} from "react-icons/si";
+
+import { DiResponsive } from "react-icons/di";
+
+interface Tech {
   name: string;
-  level: number;
-  delay?: number;
+  icon: React.ReactNode;
 }
 
-function SkillItem({ name, level, delay = 0 }: SkillItemProps) {
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 3.5; // segundos
-    const increment = level / (duration * 60); // 60fps
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        start += increment;
-        if (start >= level) {
-          start = level;
-          clearInterval(interval);
-        }
-        setValue(Math.floor(start));
-      }, 1000 / 60);
-    }, delay * 1000); // aplica delay
-
-    return () => clearTimeout(timeout);
-  }, [level, delay]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
-      viewport={{ once: true }}
-      className="space-y-2"
-    >
-      <div className="flex justify-between items-center">
-        <span className="text-sm font-medium">{name}</span>
-        <span className="text-sm text-muted-foreground">{value}%</span>
-      </div>
-      <Progress value={value} className="h-2" />
-    </motion.div>
-  );
-}
 export function Skills() {
-  const skillCategories = [
+  const technologies: Tech[] = [
+    { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
+    { name: "TypeScript", icon: <SiTypescript className="text-blue-500" /> },
+    { name: "React", icon: <SiReact className="text-cyan-400" /> },
     {
-      title: "Frontend",
-      skills: [
-        { name: "React/Next.js", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Tailwind CSS", level: 90 },
-        { name: "Material UI & Styled Components", level: 85 },
-      ],
+      name: "Next.js",
+      icon: <SiNextdotjs className="text-black dark:text-white" />,
+    },
+    { name: "Node.js", icon: <SiNodedotjs className="text-green-600" /> },
+    { name: "NestJS", icon: <SiNestjs className="text-red-600" /> },
+    { name: "Python", icon: <SiPython className="text-yellow-500" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql className="text-sky-700" /> },
+    { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
+    { name: "MySQL", icon: <SiMysql className="text-blue-600" /> },
+    { name: "Docker", icon: <SiDocker className="text-sky-500" /> },
+    { name: "AWS", icon: <SiAwsamplify className="text-orange-500" /> },
+    { name: "Git", icon: <SiGit className="text-orange-600" /> },
+    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
+    {
+      name: "Material UI",
+      icon: <SiMui className="text-blue-500" />,
     },
     {
-      title: "Backend",
-      skills: [
-        { name: "Node.js", level: 88 },
-        { name: "NestJS", level: 82 },
-        { name: "Python", level: 78 },
-        { name: "APIs REST & GraphQL", level: 92 },
-        { name: "Prisma & ORM", level: 80 },
-      ],
+      name: "Styled Components",
+      icon: <SiStyledcomponents className="text-pink-500" />,
     },
-    {
-      title: "Banco de Dados",
-      skills: [
-        { name: "PostgreSQL", level: 85 },
-        { name: "MongoDB", level: 80 },
-        { name: "Redis", level: 75 },
-        { name: "MySQL", level: 82 },
-      ],
-    },
-    {
-      title: "DevOps & Ferramentas",
-      skills: [
-        { name: "Docker", level: 80 },
-        { name: "AWS", level: 75 },
-        { name: "Git", level: 95 },
-        { name: "CI/CD", level: 78 },
-        { name: "Linux & Nginx", level: 70 },
-      ],
-    },
-  ];
+    { name: "React Query", icon: <SiReactquery className="text-pink-400" /> },
 
-  const technologies = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "NestJS",
-    "Python",
-    "Java",
-    "PostgreSQL",
-    "MongoDB",
-    "Redis",
-    "MySQL",
-    "Docker",
-    "AWS",
-    "Git",
-    "Tailwind CSS",
-    "Material UI",
-    "Styled Components",
-    "React Query",
-    "Express.js",
-    "GraphQL",
-    "REST APIs",
-    "Redux",
-    "Jest",
-    "Cypress",
-    "Linux",
-    "Nginx",
-    "Prisma",
-    "React Native",
-    "Flutter",
+    { name: "GraphQL", icon: <SiGraphql className="text-pink-500" /> },
+    { name: "Redux", icon: <SiRedux className="text-purple-600" /> },
+    { name: "Jest", icon: <SiJest className="text-red-500" /> },
+    { name: "Cypress", icon: <SiCypress className="text-green-600" /> },
+    { name: "Linux", icon: <SiLinux className="text-black dark:text-white" /> },
+    {
+      name: "Prisma",
+      icon: <SiPrisma className="text-black dark:text-white" />,
+    },
+    { name: "React Native", icon: <SiReact className="text-cyan-400" /> },
+    { name: "Flutter", icon: <SiFlutter className="text-sky-400" /> },
+    { name: "Dart", icon: <SiDart className="text-sky-400" /> },
+    { name: "Responsividade", icon: <DiResponsive className="text-sky-400" /> },
   ];
 
   return (
@@ -137,53 +99,34 @@ export function Skills() {
               Tecnologias e Expertise
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Domínio em tecnologias modernas, metodologias ágeis e boas
-              práticas que garantem a entrega de soluções robustas, escaláveis e
-              com excelente experiência para o usuário.
+              Tecnologias que domino e utilizo para entregar aplicações
+              robustas, escaláveis e com foco em performance e experiência do
+              usuário.
             </p>
           </div>
 
-          {/* Skills */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {skillCategories.map((category, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <CardTitle>{category.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <SkillItem
-                      key={skillIndex}
-                      name={skill.name}
-                      level={skill.level}
-                      delay={skillIndex * 0.1}
-                    />
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Tecnologias extras */}
+          {/* Tecnologias */}
           <Card>
             <CardHeader>
               <CardTitle className="text-center">
-                Tecnologias que Trabalho
+                Principais Tecnologias
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 justify-center">
                 {technologies.map((tech, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.02 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.03 }}
                     viewport={{ once: true }}
+                    className="flex flex-col items-center gap-2"
                   >
-                    <Badge variant="secondary" className="px-3 py-1">
-                      {tech}
-                    </Badge>
+                    <div className="text-4xl">{tech.icon}</div>
+                    <span className="text-sm font-medium text-center">
+                      {tech.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>
