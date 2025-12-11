@@ -117,7 +117,7 @@ export function Hero() {
               >
                 <Linkedin className="w-5 h-5" />
               </Button>
-              <a href="/Curriculo-Pedro Milan-Atualizado.pdf" download>
+              <a href="/Curriculo-Pedro Milan-Desenvolvedor.pdf" download>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -125,6 +125,17 @@ export function Hero() {
                 >
                   <Download className="w-4 h-4 mr-2" />
                   CV
+                </Button>
+              </a>
+
+              <a href="/Resume-Pedro Milan-Developer.pdf" download>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hover:text-primary hover:scale-110 transition-transform"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Resume (English)
                 </Button>
               </a>
             </motion.div>

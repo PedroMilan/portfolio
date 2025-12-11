@@ -15,25 +15,26 @@ import {
   SiPython,
   SiPostgresql,
   SiMongodb,
-  SiRedis,
   SiMysql,
   SiDocker,
   SiGit,
   SiTailwindcss,
   SiStyledcomponents,
   SiGraphql,
-  SiExpress,
   SiRedux,
   SiJest,
   SiCypress,
   SiLinux,
-  SiNginx,
   SiPrisma,
   SiReactquery,
   SiFlutter,
   SiAwsamplify,
   SiMui,
   SiDart,
+  SiAwslambda,
+  SiAmazons3,
+  SiAmazon,
+  SiAwsorganizations,
 } from "react-icons/si";
 
 import { DiResponsive } from "react-icons/di";
@@ -59,7 +60,13 @@ export function Skills() {
     { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
     { name: "MySQL", icon: <SiMysql className="text-blue-600" /> },
     { name: "Docker", icon: <SiDocker className="text-sky-500" /> },
-    { name: "AWS", icon: <SiAwsamplify className="text-orange-500" /> },
+
+    // AWS e serviços
+    { name: "AWS Amplify", icon: <SiAwsamplify className="text-orange-500" /> },
+    { name: "AWS", icon: <SiAwsorganizations className="text-orange-500" /> },
+    { name: "AWS Lambda", icon: <SiAwslambda className="text-orange-500" /> },
+    { name: "AWS S3", icon: <SiAmazons3 className="text-orange-500" /> },
+
     { name: "Git", icon: <SiGit className="text-orange-600" /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
     {
