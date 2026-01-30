@@ -17,12 +17,39 @@ import { motion } from "framer-motion";
 export function Projects() {
   const projects = [
     {
+      title: "Luiza Study",
+      description:
+        "Webapp de estudo criado com uma necessidade real, possibilitando transportar e organizar todo seu material para o digital.",
+      image: "/images/luizastudy.png",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "JWT", "Bycrypt"],
+      featured: true,
+      externalLink: "https://luiza-study.vercel.app/",
+    },
+    {
+      title: "HoraJusta",
+      description:
+        "Plataforma de marcação de hora para profissionais freelancers e PJ, para poder ter clareza de tempo gasto e dinheiro ganho.",
+      image: "/images/horajusta.png",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+      featured: true,
+      externalLink: "https://horajusta.vercel.app/",
+    },
+    {
+      title: "Jogo da memória",
+      description:
+        "Aplicação de Jogo da memória, trabalhando o lúdico em forma de código, feita com propósito de entretenimento.",
+      image: "/images/memory.png",
+      technologies: ["Next.js", "TypeScript", "Radix UI", "Tailwind CSS", "Lucide React", "Framer Motion"],
+      featured: false,
+      externalLink: "https://memory-game-two-players.vercel.app/",
+    },
+    {
       title: "E-Commerce Platform",
       description:
         "Plataforma completa de e-commerce com painel administrativo intuitivo, integração de pagamentos e gerenciamento de estoque em tempo real.",
       image: "/images/ecommerce.png",
       technologies: ["Next.js", "TypeScript", "Hook Form", "Tailwind CSS"],
-      featured: true,
+      featured: false,
       externalLink: "https://e-commerce-default-template.vercel.app/",
     },
     {
@@ -38,7 +65,7 @@ export function Projects() {
         "PostgreSQL",
         "Node.js",
       ],
-      featured: true,
+      featured: false,
       externalLink: "https://ruiz-milan-solutions.vercel.app/",
     },
     {
