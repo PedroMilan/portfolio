@@ -1,6 +1,66 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PM initials favicon">
-  <rect width="64" height="64" fill="#0070f3" rx="12" ry="12"></rect>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#fff" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="32">
-    PM
-  </text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#0f0a1a"/>
+    </linearGradient>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.6"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fundo com cantos arredondados -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+
+  <!-- Borda gradiente sutil -->
+  <rect width="32" height="32" rx="7" fill="none" stroke="url(#border)" stroke-width="1"/>
+
+  <!-- Linhas de grid sutis -->
+  <line x1="0" y1="10.6" x2="32" y2="10.6" stroke="rgba(120,80,255,0.08)" stroke-width="0.5"/>
+  <line x1="0" y1="21.3" x2="32" y2="21.3" stroke="rgba(120,80,255,0.08)" stroke-width="0.5"/>
+  <line x1="10.6" y1="0" x2="10.6" y2="32" stroke="rgba(120,80,255,0.08)" stroke-width="0.5"/>
+  <line x1="21.3" y1="0" x2="21.3" y2="32" stroke="rgba(120,80,255,0.08)" stroke-width="0.5"/>
+
+  <!-- Glow roxo no canto superior esquerdo -->
+  <circle cx="2" cy="2" r="10" fill="rgba(120,80,255,0.12)"/>
+  <!-- Glow ciano no canto inferior direito -->
+  <circle cx="30" cy="30" r="8" fill="rgba(56,189,248,0.08)"/>
+
+  <!-- Prompt > em ciano pequeno -->
+  <text
+    x="4"
+    y="13"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="6"
+    font-weight="700"
+    fill="#38bdf8"
+    opacity="0.7"
+  >&gt;</text>
+
+  <!-- Letras PM com gradiente e glow -->
+  <text
+    x="16"
+    y="22"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="13"
+    font-weight="700"
+    fill="url(#grad)"
+    text-anchor="middle"
+    filter="url(#glow)"
+  >PM</text>
+
+  <!-- Cursor piscante (underline) -->
+  <rect x="22.5" y="23" width="4" height="1.5" rx="0.5" fill="#a78bfa" opacity="0.8"/>
 </svg>
