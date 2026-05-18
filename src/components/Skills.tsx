@@ -26,7 +26,6 @@ import {
   SiLinux,
   SiJest,
   SiCypress,
-  SiAwsamplify,
   SiAwslambda,
   SiAmazons3,
   SiFlutter,
@@ -98,10 +97,6 @@ const categories: Category[] = [
       { name: "Docker", icon: <SiDocker className="text-sky-400" /> },
       { name: "Git", icon: <SiGit className="text-orange-500" /> },
       { name: "Linux", icon: <SiLinux className="text-white" /> },
-      {
-        name: "AWS Amplify",
-        icon: <SiAwsamplify className="text-orange-400" />,
-      },
       { name: "AWS Lambda", icon: <SiAwslambda className="text-orange-400" /> },
       { name: "AWS S3", icon: <SiAmazons3 className="text-orange-400" /> },
     ],
