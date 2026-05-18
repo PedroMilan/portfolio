@@ -288,7 +288,7 @@ export function Hero() {
                     <>
                       <Ln n={2} />
                       &nbsp;&nbsp;<S>role</S>
-                      <P>:</P> <S>"Frontend Dev"</S>
+                      <P>:</P> <S>&quot;Frontend Dev&quot;</S>
                       <P>,</P>
                     </>,
                     <>
@@ -298,13 +298,13 @@ export function Hero() {
                     </>,
                     <>
                       <Ln n={4} />
-                      &nbsp;&nbsp;&nbsp;&nbsp;<S>"Next.js"</S>
-                      <P>,</P> <S>"TypeScript"</S>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<S>&quot;Next.js&quot;</S>
+                      <P>,</P> <S>&quot;TypeScript&quot;</S>
                       <P>,</P>
                     </>,
                     <>
                       <Ln n={5} />
-                      &nbsp;&nbsp;&nbsp;&nbsp;<S>"Tailwind CSS"</S>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<S>&quot;Tailwind CSS&quot;</S>
                     </>,
                     <>
                       <Ln n={6} />

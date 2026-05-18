@@ -1,136 +1,218 @@
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
+  const navLinks = [
+    { label: "Início", id: "home" },
+    { label: "Sobre", id: "about" },
+    { label: "Habilidades", id: "skills" },
+    { label: "Projetos", id: "projects" },
+    { label: "Contato", id: "contact" },
+  ];
+
+  const services = [
+    "Desenvolvimento Web",
+    "Aplicações Mobile",
+    "APIs e Backend",
+    "Consultoria Técnica",
+    "Arquitetura de Software",
+  ];
+
+  const socials = [
+    { icon: Github, href: "https://github.com/PedroMilan", label: "GitHub" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/pedro-henrique-milan-5a9551245/",
+      label: "LinkedIn",
+    },
+    { icon: Mail, href: "mailto:pedro.milan9@gmail.com", label: "Email" },
+  ];
 
   return (
-    <footer className="py-12 bg-card border-t border-primary/10 relative transition-colors duration-300">
-      {/* Elemento decorativo */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-primary to-accent transition-all duration-300"></div>
+    <footer
+      className="relative overflow-hidden bg-[#0a0a0f]"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+    >
+      {/* Grid de fundo */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(120,80,255,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(120,80,255,0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Glow sutil no topo */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[2px] pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(120,80,255,0.5), transparent)",
+        }}
+      />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2 space-y-4">
-              <h3 className="text-xl font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Corpo do footer */}
+        <div className="grid md:grid-cols-4 gap-10 py-14">
+          {/* Coluna de identidade */}
+          <div className="md:col-span-2 flex flex-col gap-5">
+            {/* Nome com gradiente */}
+            <div>
+              <p
+                className="text-[11px] tracking-[0.2em] uppercase mb-1"
+                style={{
+                  fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+                  color: "rgba(240,238,255,0.25)",
+                }}
+              >
+                &gt; pedro_milan.ts
+              </p>
+              <h3
+                className="text-2xl font-bold"
+                style={{
+                  background: "linear-gradient(135deg, #a78bfa, #38bdf8)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
                 Pedro Milan
               </h3>
-              <p className="text-muted-foreground max-w-md">
-                Desenvolvedor de sistemas apaixonado por criar soluções digitais
-                inovadoras e eficientes. Sempre em busca de novos desafios e
-                oportunidades de aprendizado.
-              </p>
-              <div className="flex items-center space-x-4">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() =>
-                    window.open("https://github.com/PedroMilan", "_blank")
-                  }
-                >
-                  <Github className="w-5 h-5" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() =>
-                    window.open(
-                      "https://www.linkedin.com/in/pedro-henrique-milan-5a9551245/",
-                      "_blank"
-                    )
-                  }
-                >
-                  <Linkedin className="w-5 h-5" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() =>
-                    (window.location.href = "mailto:pedro.milan9@gmail.com")
-                  }
-                >
-                  <Mail className="w-5 h-5" />
-                </Button>
-              </div>
             </div>
 
-            <div className="space-y-4">
-              <h4 className="font-semibold">Navegação</h4>
-              <div className="flex flex-col space-y-2">
-                <button
-                  onClick={() => scrollToSection("home")}
-                  className="text-muted-foreground hover:text-primary transition-colors text-left"
-                >
-                  Início
-                </button>
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="text-muted-foreground hover:text-primary transition-colors text-left"
-                >
-                  Sobre
-                </button>
-                <button
-                  onClick={() => scrollToSection("skills")}
-                  className="text-muted-foreground hover:text-primary transition-colors text-left"
-                >
-                  Habilidades
-                </button>
-                <button
-                  onClick={() => scrollToSection("projects")}
-                  className="text-muted-foreground hover:text-primary transition-colors text-left"
-                >
-                  Projetos
-                </button>
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="text-muted-foreground hover:text-primary transition-colors text-left"
-                >
-                  Contato
-                </button>
-              </div>
-            </div>
+            <p
+              className="text-[14px] leading-relaxed max-w-xs"
+              style={{ color: "rgba(240,238,255,0.4)" }}
+            >
+              Desenvolvedor frontend apaixonado por criar interfaces modernas,
+              performáticas e que realmente fazem diferença para o usuário.
+            </p>
 
-            <div className="space-y-4">
-              <h4 className="font-semibold">Serviços</h4>
-              <div className="flex flex-col space-y-2 text-muted-foreground">
-                <span>Desenvolvimento Web</span>
-                <span>Aplicações Mobile</span>
-                <span>APIs e Backend</span>
-                <span>Consultoria Técnica</span>
-                <span>Arquitetura de Software</span>
-              </div>
+            {/* Socials */}
+            <div className="flex gap-2">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg transition-all"
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "rgba(255,255,255,0.04)",
+                    color: "rgba(240,238,255,0.4)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(120,80,255,0.45)";
+                    e.currentTarget.style.color = "#a78bfa";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor =
+                      "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.color = "rgba(240,238,255,0.4)";
+                  }}
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          <Separator className="my-8" />
-
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-2 text-muted-foreground">
-              <span>© {currentYear} Pedro Milan. Desenvolvido com</span>
-              <Heart className="w-4 h-4 fill-red-500 text-red-500" />
-              <span>e React</span>
-            </div>
-            <Button
-              variant="ghost"
-              onClick={scrollToTop}
-              className="text-muted-foreground hover:text-primary"
+          {/* Navegação */}
+          <div className="flex flex-col gap-4">
+            <h4
+              className="text-[11px] uppercase tracking-[0.2em]"
+              style={{
+                color: "rgba(240,238,255,0.3)",
+                fontFamily: "'JetBrains Mono', monospace",
+              }}
             >
-              Voltar ao topo ↑
-            </Button>
+              Navegação
+            </h4>
+            <nav className="flex flex-col gap-[10px]">
+              {navLinks.map(({ label, id }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className="text-left text-[14px] transition-colors w-fit"
+                  style={{ color: "rgba(240,238,255,0.4)" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#a78bfa")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.color = "rgba(240,238,255,0.4)")
+                  }
+                >
+                  {label}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          {/* Serviços */}
+          <div className="flex flex-col gap-4">
+            <h4
+              className="text-[11px] uppercase tracking-[0.2em]"
+              style={{
+                color: "rgba(240,238,255,0.3)",
+                fontFamily: "'JetBrains Mono', monospace",
+              }}
+            >
+              Serviços
+            </h4>
+            <ul className="flex flex-col gap-[10px]">
+              {services.map((s) => (
+                <li
+                  key={s}
+                  className="text-[14px]"
+                  style={{ color: "rgba(240,238,255,0.4)" }}
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
+        {/* Linha divisória */}
+        <div
+          className="w-full h-px"
+          style={{ background: "rgba(255,255,255,0.05)" }}
+        />
+
+        {/* Rodapé inferior */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
+          <p
+            className="text-[12px]"
+            style={{ color: "rgba(240,238,255,0.25)" }}
+          >
+            © {year} Pedro Milan. Feito com Next.js e Tailwind CSS.
+          </p>
+          <button
+            onClick={() => scrollToSection("home")}
+            className="text-[12px] transition-colors"
+            style={{ color: "rgba(240,238,255,0.25)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#a78bfa")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "rgba(240,238,255,0.25)")
+            }
+          >
+            Voltar ao topo ↑
+          </button>
+        </div>
       </div>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+      `}</style>
     </footer>
   );
 }
