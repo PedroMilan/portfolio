@@ -385,8 +385,8 @@ export function Hero() {
             }}
           >
             <span
-              className="text-lg font-bold"
-              style={{ color: "#f0eeff", lineHeight: 1 }}
+              className="font-bold"
+              style={{ color: "#f0eeff", lineHeight: 1, fontSize: "1.4625rem" }}
             >
               {num}
               {icon}
