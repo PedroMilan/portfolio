@@ -21,7 +21,14 @@ export function Projects() {
       description:
         "Webapp de estudo criado com uma necessidade real, possibilitando transportar e organizar todo seu material para o digital.",
       image: "/images/luizastudy.png",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "JWT", "Bycrypt"],
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Prisma",
+        "JWT",
+        "Bycrypt",
+      ],
       featured: true,
       externalLink: "https://luiza-study.vercel.app/",
     },
@@ -35,11 +42,27 @@ export function Projects() {
       externalLink: "https://horajusta.vercel.app/",
     },
     {
+      title: "Secredt Garden | Alba Serena",
+      description:
+        "Alba Serena é um perfume sólido artesanal com lavanda e bergamota, criado pela Secret Garden para transformar sua rotina em bem-estar.",
+      image: "/images/alba-serena.png",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+      featured: false,
+      externalLink: "https://alba-serena.vercel.app/",
+    },
+    {
       title: "Jogo da memória",
       description:
         "Aplicação de Jogo da memória, trabalhando o lúdico em forma de código, feita com propósito de entretenimento.",
       image: "/images/memory.png",
-      technologies: ["Next.js", "TypeScript", "Radix UI", "Tailwind CSS", "Lucide React", "Framer Motion"],
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Radix UI",
+        "Tailwind CSS",
+        "Lucide React",
+        "Framer Motion",
+      ],
       featured: false,
       externalLink: "https://memory-game-two-players.vercel.app/",
     },
