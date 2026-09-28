@@ -2,114 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Paleta "caneta azul e marca-texto". Claro por padrão, escuro segue o sistema. */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  :root {
+    --paper: #f4f5f2;
+    --surface: #ffffff;
+    --ink: #16181d;
+    --muted: #585d67;
+    --faint: #7c818a;
+    --line: #d9dbd6;
+    --pen: #1d3fb0;
+    --pen-soft: rgba(29, 63, 176, 0.08);
+    --mark: #ffe24a;
+    --mark-ink: #16181d;
+    --ok: #1c7f45;
+    --danger: #b42318;
+    --shadow: 0 1px 2px rgba(22, 24, 29, 0.06), 0 8px 24px rgba(22, 24, 29, 0.08);
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #111317;
+      --surface: #191c21;
+      --ink: #ecedef;
+      --muted: #a1a6af;
+      --faint: #80858f;
+      --line: #2a2e35;
+      --pen: #93a8ff;
+      --pen-soft: rgba(147, 168, 255, 0.1);
+      --mark: rgba(255, 226, 74, 0.3);
+      --mark-ink: #fff7d1;
+      --ok: #5ccb8a;
+      --danger: #ff8a80;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-paper font-body text-ink antialiased;
+    font-size: 17px;
+    line-height: 1.6;
   }
 
-  /* Dark theme colors */
-  .dark {
-    --background: #0a0a0a;
-    --foreground: #ffd700;
-    --card: #1a1a1a;
-    --card-foreground: #ffd700;
-    --popover: #1a1a1a;
-    --popover-foreground: #ffd700;
-    --primary: #ffd700;
-    --primary-foreground: #000000;
-    --secondary: #333333;
-    --secondary-foreground: #ffd700;
-    --muted: #262626;
-    --muted-foreground: #a3a3a3;
-    --accent: #ffeb3b;
-    --accent-foreground: #000000;
-    --destructive: #dc2626;
-    --destructive-foreground: #ffffff;
-    --border: #333333;
-    --input: #262626;
-    --input-background: #262626;
-    --switch-background: #333333;
-    --ring: #ffd700;
-    --chart1: #ffd700;
-    --chart2: #ffeb3b;
-    --chart3: #fff176;
-    --chart4: #666666;
-    --chart5: #999999;
-    --sidebar: #1a1a1a;
-    --sidebar-foreground: #ffd700;
-    --sidebar-primary: #ffd700;
-    --sidebar-primary-foreground: #000000;
-    --sidebar-accent: #333333;
-    --sidebar-accent-foreground: #ffd700;
-    --sidebar-border: #333333;
-    --sidebar-ring: #ffd700;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
   }
 
-  .dark {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+  :focus-visible {
+    outline: 2px solid var(--pen);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--mark);
+    color: var(--mark-ink);
   }
 }
 
-/**
-   * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
-   */
-@layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
-    h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
+@layer components {
+  /* Marca-texto: um por tela, no máximo */
+  .mark {
+    color: var(--mark-ink);
+    background-image: linear-gradient(var(--mark), var(--mark));
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 0.18em 0.5em 0.24em 0.44em;
+    padding: 0 0.12em;
+    margin: 0 -0.04em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
 
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
+  .mark-sweep {
+    animation: mark-sweep 0.9s cubic-bezier(0.6, 0.1, 0.3, 1) 0.35s both;
+  }
 
-    h3 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h4 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    p {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
+  .text-link {
+    @apply font-semibold text-pen underline decoration-[1.5px] underline-offset-[5px] hover:decoration-[2.5px];
   }
 }
 
-html {
-  font-size: var(--font-size);
+@keyframes mark-sweep {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .mark-sweep {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }

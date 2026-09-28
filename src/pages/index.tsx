@@ -4,56 +4,57 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
-import { Skills } from "@/components/Skills";
+import { Stack } from "@/components/Stack";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
+
+const SITE_URL = "https://pedromilan.vercel.app/";
+const TITLE = "Pedro Milan | Desenvolvedor Full-Stack";
+const DESCRIPTION =
+  "Desenvolvedor full-stack em São Paulo. Faço do banco de dados à tela, com Node.js, NestJS, React, Next.js e TypeScript.";
 
 export default function Home() {
   return (
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32.png"
-        />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+        <meta name="theme-color" content="#f4f5f2" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#111317" media="(prefers-color-scheme: dark)" />
       </Head>
 
       <NextSeo
-        title="Pedro Milan | Desenvolvedor Front-End"
-        description="Desenvolvedor apaixonado por tecnologia, focado em criar soluções digitais modernas e escaláveis. Especializado em frontend com React/Next.js, com experiência em backend e mobile híbrido."
-        canonical="https://pedromilan.vercel.app/"
+        title={TITLE}
+        description={DESCRIPTION}
+        canonical={SITE_URL}
         openGraph={{
-          url: "https://pedromilan.vercel.app/",
-          title: "Pedro Milan | Desenvolvedor Front-End",
-          description:
-            "Desenvolvedor apaixonado por tecnologia, focado em criar soluções digitais modernas e escaláveis. Especializado em frontend com React/Next.js, com experiência em backend e mobile híbrido.",
+          url: SITE_URL,
+          title: TITLE,
+          description: DESCRIPTION,
+          locale: "pt_BR",
           images: [
             {
-              url: "https://pedromilan.vercel.app/favicon-512.png",
+              url: `${SITE_URL}og-image.png`,
               width: 1200,
               height: 630,
-              alt: "Portfólio de Pedro Milan",
+              alt: "Pedro Milan, desenvolvedor full-stack em São Paulo",
             },
           ],
-          siteName: "Portfólio - Pedro Milan",
+          siteName: "Pedro Milan",
         }}
+        twitter={{ cardType: "summary_large_image" }}
       />
 
-      <div className="min-h-screen bg-[#0a0a0f]">
-        <Header />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <Header />
+      <main>
+        <Hero />
+        <Projects />
+        <About />
+        <Stack />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }
