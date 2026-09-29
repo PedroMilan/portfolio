@@ -1,32 +1,75 @@
-"use client";
+import { useEffect, useState } from "react";
 
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { useState } from "react";
+import { Container, Section, SectionHeader } from "./ui/Section";
+
+const EMAIL = "pedro.milan9@gmail.com";
+
+const channels = [
+  {
+    label: "WhatsApp",
+    value: "+55 11 96177-6373",
+    href: "https://wa.me/5511961776373?text=Olá!%20Vim%20pelo%20seu%20site.",
+  },
+  {
+    label: "LinkedIn",
+    value: "pedro-henrique-milan ↗",
+    href: "https://www.linkedin.com/in/pedro-henrique-milan-5a9551245/",
+  },
+  { label: "GitHub", value: "PedroMilan ↗", href: "https://github.com/PedroMilan" },
+];
+
+const emptyForm = { name: "", email: "", message: "" };
+
+function useSaoPauloTime() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const format = new Intl.DateTimeFormat("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "America/Sao_Paulo",
+    });
+    const tick = () => setTime(format.format(new Date()));
+    tick();
+    const id = setInterval(tick, 20_000);
+    return () => clearInterval(id);
+  }, []);
+
+  return time;
+}
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<null | "success" | "error">(null);
+  const [copied, setCopied] = useState(false);
+  const time = useSaoPauloTime();
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${EMAIL}`;
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
+
     try {
       const response = await fetch("https://formspree.io/f/meolregn", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(formData),
       });
+
       if (response.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData(emptyForm);
       } else {
         setStatus("error");
       }
@@ -44,394 +87,130 @@ export function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "pedro.milan9@gmail.com",
-      href: "mailto:pedro.milan9@gmail.com",
-    },
-    {
-      icon: Phone,
-      label: "WhatsApp",
-      value: "+55 (11) 96177-6373",
-      href: "https://wa.me/5511961776373?text=Olá!%20Vim%20pelo%20seu%20site.",
-    },
-    {
-      icon: MapPin,
-      label: "Localização",
-      value: "São Paulo, SP — Brasil",
-      href: "#",
-    },
-  ];
+  const fieldClass =
+    "w-full rounded border border-line bg-paper px-3 py-[11px] text-base font-normal text-ink placeholder:text-faint focus:border-transparent focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-pen";
 
   return (
-    <section
-      id="contact"
-      className="relative py-24 overflow-hidden bg-[#0a0a0f]"
-    >
-      {/* Grid de fundo */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(120,80,255,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(120,80,255,0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div
-        className="absolute top-0 right-0 w-[350px] h-[350px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(56,189,248,0.07) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[300px] h-[300px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(120,80,255,0.08) 0%, transparent 70%)",
-        }}
-      />
+    <Section id="contato">
+      <Container className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+        <div>
+          <SectionHeader title="Vamos conversar">
+            Para vaga, freela ou só trocar ideia. O jeito mais rápido é e-mail.
+          </SectionHeader>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p
-            className="text-[12px] font-medium tracking-[0.2em] uppercase mb-3"
-            style={{
-              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-              color: "#a78bfa",
-            }}
-          >
-            &gt; contato
-          </p>
-          <h2
-            className="text-4xl lg:text-5xl font-bold tracking-tight"
-            style={{ color: "#f0eeff" }}
-          >
-            Vamos{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #a78bfa, #38bdf8)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+          <div className="mb-7 mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-3">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="font-display text-[clamp(24px,3.6vw,38px)] font-bold leading-tight tracking-[-0.02em] no-underline [overflow-wrap:anywhere] hover:underline hover:underline-offset-[6px]"
             >
-              Trabalhar Juntos
-            </span>
-          </h2>
-          <p
-            className="mt-4 text-[15px] max-w-xl"
-            style={{ color: "rgba(240,238,255,0.45)" }}
-          >
-            Tem um projeto em mente? Estou disponível para freelances,
-            oportunidades de trabalho ou trocar ideias sobre tecnologia.
-          </p>
-        </motion.div>
+              {EMAIL}
+            </a>
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="rounded-full border border-transparent bg-pen-soft px-3.5 py-[9px] text-sm font-semibold text-pen hover:border-pen"
+            >
+              {copied ? "Copiado" : "Copiar e-mail"}
+            </button>
+          </div>
 
-        <div className="grid lg:grid-cols-2 gap-10">
-          {/* Coluna esquerda — informações */}
-          <motion.div
-            className="flex flex-col gap-8"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            {/* Cards de contato */}
-            <div className="flex flex-col gap-3">
-              {contactInfo.map(({ icon: Icon, label, value, href }) => (
+          <ul className="max-w-[30em] border-t border-line">
+            {channels.map(({ label, value, href }) => (
+              <li
+                key={label}
+                className="flex flex-wrap justify-between gap-4 border-b border-line py-[13px] text-base"
+              >
+                <span className="text-faint">{label}</span>
                 <a
-                  key={label}
                   href={href}
-                  target={href !== "#" ? "_blank" : undefined}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl transition-all group"
-                  style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(120,80,255,0.35)";
-                    e.currentTarget.style.background = "rgba(120,80,255,0.06)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor =
-                      "rgba(255,255,255,0.07)";
-                    e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                  }}
+                  className="text-ink underline-offset-4"
                 >
-                  <div
-                    className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0"
-                    style={{
-                      background: "rgba(120,80,255,0.12)",
-                      border: "1px solid rgba(120,80,255,0.2)",
-                    }}
-                  >
-                    <Icon className="w-4 h-4" style={{ color: "#a78bfa" }} />
-                  </div>
-                  <div>
-                    <p
-                      className="text-[11px] uppercase tracking-widest mb-[2px]"
-                      style={{ color: "rgba(240,238,255,0.3)" }}
-                    >
-                      {label}
-                    </p>
-                    <p
-                      className="text-[14px] font-medium"
-                      style={{ color: "rgba(240,238,255,0.75)" }}
-                    >
-                      {value}
-                    </p>
-                  </div>
+                  {value}
                 </a>
-              ))}
-            </div>
+              </li>
+            ))}
+          </ul>
 
-            {/* Disponibilidade */}
-            <div
-              className="p-5 rounded-xl"
-              style={{
-                background: "rgba(255,255,255,0.02)",
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              <p
-                className="text-[11px] uppercase tracking-widest mb-3"
-                style={{
-                  fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-                  color: "rgba(240,238,255,0.3)",
-                }}
-              >
-                Horário de trabalho
+          <div className="mt-7 grid gap-1.5 text-base text-muted">
+            <p>Respondo em até um dia útil. Segunda a sexta, das 9h às 18h.</p>
+            {time && (
+              <p>
+                Agora em São Paulo:{" "}
+                <span className="font-mono tabular-nums text-ink">{time}</span>
               </p>
-              <p
-                className="text-[14px]"
-                style={{ color: "rgba(240,238,255,0.55)", lineHeight: 1.7 }}
-              >
-                Segunda a Sexta:{" "}
-                <span style={{ color: "#a78bfa" }}>9h às 18h</span> (GMT-3)
-                <br />
-                Finais de semana:{" "}
-                <span style={{ color: "rgba(240,238,255,0.35)" }}>
-                  apenas projetos urgentes
-                </span>
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Coluna direita — formulário */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <div
-              className="p-7 rounded-xl"
-              style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <h3
-                className="text-[16px] font-semibold mb-6"
-                style={{ color: "#f0eeff" }}
-              >
-                Envie uma mensagem
-              </h3>
-
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <Field label="Nome *">
-                    <Input
-                      name="name"
-                      placeholder="Seu nome"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Field>
-                  <Field label="Email *">
-                    <Input
-                      name="email"
-                      type="email"
-                      placeholder="seu@email.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Field>
-                </div>
-
-                <Field label="Assunto *">
-                  <Input
-                    name="subject"
-                    placeholder="Sobre o que você gostaria de falar?"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                  />
-                </Field>
-
-                <Field label="Mensagem *">
-                  <textarea
-                    name="message"
-                    placeholder="Descreva seu projeto ou dúvida..."
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className="w-full resize-none rounded-lg px-4 py-3 text-[14px] outline-none transition-all"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      color: "#f0eeff",
-                    }}
-                    onFocus={(e) =>
-                      (e.currentTarget.style.borderColor =
-                        "rgba(120,80,255,0.5)")
-                    }
-                    onBlur={(e) =>
-                      (e.currentTarget.style.borderColor =
-                        "rgba(255,255,255,0.08)")
-                    }
-                  />
-                </Field>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="flex items-center justify-center gap-2 w-full py-[11px] rounded-lg text-[14px] font-medium text-white transition-opacity hover:opacity-85 disabled:opacity-50"
-                  style={{
-                    background: "linear-gradient(135deg, #7c3aed, #4f46e5)",
-                  }}
-                >
-                  {loading ? (
-                    <svg
-                      className="animate-spin h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v8H4z"
-                      />
-                    </svg>
-                  ) : (
-                    <Send className="w-4 h-4" />
-                  )}
-                  {loading ? "Enviando..." : "Enviar Mensagem"}
-                </button>
-
-                {status === "success" && (
-                  <motion.p
-                    className="text-center text-[13px]"
-                    style={{ color: "#86efac" }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
-                    ✓ Mensagem enviada com sucesso!
-                  </motion.p>
-                )}
-                {status === "error" && (
-                  <motion.p
-                    className="text-center text-[13px]"
-                    style={{ color: "#f87171" }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
-                    ✗ Erro ao enviar. Tente novamente.
-                  </motion.p>
-                )}
-              </form>
-            </div>
-          </motion.div>
+            )}
+          </div>
         </div>
-      </div>
 
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-        ::placeholder { color: rgba(240,238,255,0.2); }
-      `}</style>
-    </section>
-  );
-}
+        <form
+          onSubmit={handleSubmit}
+          className="grid gap-[18px] self-start rounded-md border border-line bg-surface p-7"
+        >
+          <h3 className="text-xl font-bold">Ou me mande uma mensagem</h3>
 
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex flex-col gap-[6px]">
-      <label
-        className="text-[11px] uppercase tracking-widest"
-        style={{ color: "rgba(240,238,255,0.35)" }}
-      >
-        {label}
-      </label>
-      {children}
-    </div>
-  );
-}
+          <label htmlFor="contact-name" className="grid gap-1.5 text-sm font-semibold">
+            Seu nome
+            <input
+              id="contact-name"
+              name="name"
+              autoComplete="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className={fieldClass}
+            />
+          </label>
 
-function Input({
-  name,
-  placeholder,
-  value,
-  onChange,
-  type = "text",
-  required,
-}: {
-  name: string;
-  placeholder: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  type?: string;
-  required?: boolean;
-}) {
-  return (
-    <input
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      required={required}
-      className="w-full rounded-lg px-4 py-3 text-[14px] outline-none transition-all"
-      style={{
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        color: "#f0eeff",
-      }}
-      onFocus={(e) =>
-        (e.currentTarget.style.borderColor = "rgba(120,80,255,0.5)")
-      }
-      onBlur={(e) =>
-        (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")
-      }
-    />
+          <label htmlFor="contact-email" className="grid gap-1.5 text-sm font-semibold">
+            Seu e-mail
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className={fieldClass}
+            />
+          </label>
+
+          <label htmlFor="contact-message" className="grid gap-1.5 text-sm font-semibold">
+            Mensagem
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={5}
+              required
+              placeholder="Conte um pouco sobre a vaga ou o projeto"
+              value={formData.message}
+              onChange={handleChange}
+              className={`${fieldClass} min-h-[120px] resize-y`}
+            />
+          </label>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-md bg-ink px-[22px] py-3.5 font-semibold text-paper transition-transform hover:-translate-y-px disabled:cursor-wait disabled:opacity-60"
+          >
+            {loading ? "Enviando…" : "Enviar mensagem"}
+          </button>
+
+          <p aria-live="polite" className="text-sm">
+            {status === "success" && (
+              <span className="text-ok">Mensagem enviada. Respondo em até um dia útil.</span>
+            )}
+            {status === "error" && (
+              <span className="text-danger">
+                Não consegui enviar. Tente de novo ou escreva direto para {EMAIL}.
+              </span>
+            )}
+          </p>
+        </form>
+      </Container>
+    </Section>
   );
 }
