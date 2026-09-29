@@ -2,8 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  compiler: {
-    styledComponents: true,
+  images: {
+    // 90 só para a foto do hero; o resto usa o padrão
+    qualities: [75, 90],
   },
 };
 

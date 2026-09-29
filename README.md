@@ -11,12 +11,12 @@
 
 # pedro_milan.ts
 
-**`> Portfólio Pessoal — Frontend Developer`**
+**`> Portfólio Pessoal — Desenvolvedor Full-Stack`**
 
 [![Deploy](https://img.shields.io/badge/deploy-vercel-black?style=for-the-badge&logo=vercel)](https://pedromilan.vercel.app/)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 
 </div>
 
@@ -24,7 +24,7 @@
 
 ## `> sobre`
 
-Portfólio pessoal desenvolvido com foco em **performance**, **acessibilidade** e **experiência do usuário**. Design dark com acentos neon, animações com Framer Motion e SEO otimizado via `next-seo`.
+Portfólio pessoal desenvolvido com foco em **performance**, **acessibilidade** e **experiência do usuário**. Identidade visual "caneta azul e marca-texto": fundo liso, tinta preta, anotações à mão e um marca-texto amarelo no que importa. Tema claro por padrão, escuro segue o sistema. SEO via `next-seo` com imagem de Open Graph própria.
 
 Disponível em → **[pedromilan.vercel.app](https://pedromilan.vercel.app)**
 
@@ -36,9 +36,9 @@ Disponível em → **[pedromilan.vercel.app](https://pedromilan.vercel.app)**
 | --------------- | ------------------------------- |
 | **Framework**   | Next.js (Pages Router), React   |
 | **Linguagem**   | TypeScript                      |
-| **Estilização** | Tailwind CSS, Styled Components |
-| **Animações**   | Framer Motion                   |
-| **Ícones**      | Lucide React, React Icons       |
+| **Estilização** | Tailwind CSS + variáveis CSS    |
+| **Fontes**      | next/font (Bricolage Grotesque, Figtree, IBM Plex Mono, Nanum Pen Script) |
+| **Imagens**     | next/image, WebP                |
 | **Formulário**  | Formspree                       |
 | **SEO**         | next-seo, Open Graph, meta tags |
 | **Deploy**      | Vercel                          |
@@ -49,13 +49,13 @@ Disponível em → **[pedromilan.vercel.app](https://pedromilan.vercel.app)**
 
 ```
 /
-├── Header       → navegação fixa com glass effect
-├── Hero         → apresentação + card de código animado
-├── About        → jornada, valores e destaques técnicos
-├── Skills       → tecnologias agrupadas por categoria
-├── Projects     → projeto hero + grid de projetos
-├── Contact      → formulário + informações de contato
-└── Footer       → links, navegação e créditos
+├── Header       → nome, navegação e status
+├── Hero         → foto, apresentação e currículos
+├── Projects     → Luiza Study em destaque, 4 projetos e lista dos demais
+├── About        → história e quadro "Agora"
+├── Stack        → tecnologias por frequência de uso
+├── Contact      → e-mail, canais, horário e formulário (Formspree)
+└── Footer       → uma linha
 ```
 
 ---
@@ -87,18 +87,21 @@ Acesse **[http://localhost:3000](http://localhost:3000)**
 ```
 src/
 ├── components/
+│   ├── ui/
+│   │   ├── Section.tsx   → Container, Section, SectionHeader
+│   │   └── PenNote.tsx   → anotação à mão e seta
 │   ├── Header.tsx
 │   ├── Hero.tsx
-│   ├── About.tsx
-│   ├── Skills.tsx
 │   ├── Projects.tsx
+│   ├── About.tsx
+│   ├── Stack.tsx
 │   ├── Contact.tsx
 │   └── Footer.tsx
 ├── pages/
 │   ├── _app.tsx
 │   └── index.tsx
 └── styles/
-    └── globals.css
+    └── globals.css       → tokens de cor (claro e escuro)
 ```
 
 ---
