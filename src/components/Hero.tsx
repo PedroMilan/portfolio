@@ -62,8 +62,9 @@ export function Hero() {
             <Image
               src="/pedro-milan.jpg"
               alt="Selfie de Pedro Milan, de óculos e moletom preto, na entrada de um evento de tecnologia em São Paulo"
-              width={720}
-              height={900}
+              width={1200}
+              height={1500}
+              quality={90}
               priority
               sizes="300px"
               className="block aspect-[4/5] w-full object-cover"
